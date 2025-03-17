@@ -1,5 +1,5 @@
 const std = @import("std");
-const ProcessManager = @import("task_manager_lib").ProcessManager;
+const ProcessManager = @import("manager").ProcessManager;
 
 pub fn main() !void {
     var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
@@ -8,6 +8,6 @@ pub fn main() !void {
     var pmon = ProcessManager.init(arena.allocator());
     const processes = try pmon.listProcesses();
     for (processes) |process| {
-        std.debug.print("{d} {s}", .{ process.pid, process.name });
+        std.debug.print("{d} {s}\n", .{ process.pid, process.name });
     }
 }
